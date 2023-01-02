@@ -116,14 +116,9 @@ const convertion = () => {
 	);
 };
 
-const selectFirstSymbol = (e) => {
-	const symbol = e.target.textContent;
-	one.textContent = trimKelvin('°' + symbol);
-};
-
-const selectSecondSymbol = (e) => {
-	const symbol = e.target.textContent;
-	two.textContent = trimKelvin('°' + symbol);
+const selectSymbol = (element, e) => {
+	const symbol = e.target.textContent.slice(0, 1);
+	element.textContent = trimKelvin('°' + symbol);
 };
 
 const resetConverter = () => {
@@ -147,12 +142,12 @@ symbolBtns.forEach((symbolBtn) => {
 	symbolBtn.addEventListener('click', (event) => {
 		if (event.detail === 1) {
 			timer = setTimeout(() => {
-				selectFirstSymbol(event);
+				selectSymbol(one, event);
 			}, 300);
 		}
 	});
 	symbolBtn.addEventListener('dblclick', (event) => {
 		clearTimeout(timer);
-		selectSecondSymbol(event);
+		selectSymbol(two, event);
 	});
 });
